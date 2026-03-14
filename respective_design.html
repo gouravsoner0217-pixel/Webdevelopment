@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gourav Portfolio</title>
+
+<style>
+
+
+body{
+margin:0;
+font-family:Arial;
+background:#f4f4f4;
+}
+
+
+header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:#4a47ff;
+color:white;
+
+padding:20px;
+
+}
+
+.logo{
+font-size:24px;
+}
+
+.nav-links{
+
+display:flex;
+gap:20px;
+list-style:none;
+
+}
+
+.nav-links a{
+
+color:white;
+text-decoration:none;
+font-weight:bold;
+
+}
+
+.nav-links a:hover{
+color:yellow;
+}
+
+
+#home{
+
+text-align:center;
+padding:80px;
+
+background:linear-gradient(120deg,#667eea,#764ba2);
+color:white;
+
+}
+
+
+#about{
+
+padding:40px;
+text-align:center;
+background:white;
+
+}
+
+
+.project-container{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+
+padding:40px;
+
+}
+
+.card{
+
+background:white;
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
+
+text-align:center;
+
+}
+
+.card a{
+
+display:inline-block;
+margin-top:10px;
+
+background:#4a47ff;
+color:white;
+
+padding:8px 15px;
+
+border-radius:5px;
+
+text-decoration:none;
+
+}
+
+.card a:hover{
+background:#ff7a18;
+}
+
+
+#contact{
+
+text-align:center;
+padding:40px;
+background:#f0f0ff;
+
+}
+
+#contact a{
+
+color:#4a47ff;
+text-decoration:none;
+font-weight:bold;
+
+}
+
+#contact a:hover{
+color:red;
+}
+
+
+footer{
+
+background:#222;
+color:white;
+
+text-align:center;
+padding:10px;
+
+}
+
+
+
+@media(max-width:768px){
+
+header{
+flex-direction:column;
+}
+
+.nav-links{
+flex-direction:column;
+align-items:center;
+}
+
+.project-container{
+grid-template-columns:1fr;
+}
+
+}
+
+
+@media(min-width:769px) and (max-width:1024px){
+
+.project-container{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1 class="logo">Gourav Soner</h1>
+
+<nav>
+
+<ul class="nav-links">
+
+<li><a href="#home">Home</a></li>
+
+<li><a href="#about">About</a></li>
+
+<li><a href="#projects">Projects</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+
+<section id="home">
+
+<h2>Welcome to My Portfolio</h2>
+
+<p>I am learning Web Development</p>
+
+</section>
+
+
+<section id="about">
+
+<h2>About Me</h2>
+
+<p>
+I am a BCA student learning HTML, CSS and building responsive websites.
+</p>
+
+</section>
+
+
+<section id="projects">
+
+<h2 style="text-align:center">My Projects</h2>
+
+<div class="project-container">
+
+<div class="card">
+
+<h3>Portfolio Website</h3>
+
+<a href="#">View Project</a>
+
+</div>
+
+<div class="card">
+
+<h3>Landing Page</h3>
+
+<a href="#">View Project</a>
+
+</div>
+
+<div class="card">
+
+<h3>Calculator</h3>
+
+<a href="#">View Project</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact">
+
+<h2>Contact</h2>
+<p>contact no:- +91 97549-85504</p>
+<p>Email : gouravsoner0217@gmail.com</p>
+
+<p>
+
+<a href="https://github.com/gouravsoner0217-pixel">GitHub</a>
+
+</p>
+
+<p>
+
+<a href="https://www.linkedin.com/in/gourav-soner-ab297637b">LinkedIn</a>
+
+</p>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Gourav Soner</p>
+
+</footer>
+
+
+</body>
+</html>
