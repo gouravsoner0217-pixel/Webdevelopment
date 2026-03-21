@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Features Demo</title>
+
+<style>
+body{
+font-family: Arial;
+margin:0;
+scroll-behavior:smooth;
+background:white;
+color:black;
+}
+
+.dark{
+background:black;
+color:white;
+}
+
+nav{
+background:rgb(212, 189, 189);
+padding:15px;
+display:flex;
+justify-content:space-between;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+section{
+padding:60px;
+}
+
+button{
+padding:10px 15px;
+cursor:pointer;
+}
+
+form{
+max-width:300px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+input{
+padding:8px;
+}
+
+.error{
+color:red;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+
+<nav>
+<div>My Website</div>
+
+<div>
+<a href="#home">Home</a>
+<a href="#contact">Contact</a>
+</div>
+
+<button id="toggleBtn">🌙 Dark Mode</button>
+</nav>
+
+
+
+<section id="home">
+<h2>Home Section</h2>
+<p>This section shows smooth scrolling.</p>
+</section>
+
+
+
+<section id="contact">
+<h2>Contact Form</h2>
+
+<form id="myForm">
+
+<input type="text" id="name" placeholder="Enter Name">
+<span class="error" id="nameError"></span>
+
+<input type="email" id="email" placeholder="Enter Email">
+<span class="error" id="emailError"></span>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</section>
+
+
+<script>
+
+
+const toggleBtn = document.getElementById("toggleBtn")
+const body = document.body
+const form = document.getElementById("myForm")
+
+
+const toggleDarkMode = () => {
+body.classList.toggle("dark")
+}
+
+
+toggleBtn.addEventListener("click", toggleDarkMode)
+
+
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault()
+
+let name = document.getElementById("name").value
+let email = document.getElementById("email").value
+
+let nameError = document.getElementById("nameError")
+let emailError = document.getElementById("emailError")
+
+nameError.textContent=""
+emailError.textContent=""
+
+let valid = true
+
+if(name === ""){
+nameError.textContent="Name required"
+valid=false
+}
+
+if(email === ""){
+emailError.textContent="Email required"
+valid=false
+}
+
+if(valid){
+alert("Form Submitted Successfully 🚀")
+}
+
+})
+
+</script>
+
+</body>
+</html>

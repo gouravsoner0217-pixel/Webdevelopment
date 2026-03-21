@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+const API_KEY = "959cc95784c440d0a2f125814262103";
 
 function App() {
   const [city, setCity] = useState("");
@@ -16,7 +16,7 @@ function App() {
     setWeather(null);
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`
       );
       if (!res.ok) throw new Error("City not found! Please check the name.");
       const data = await res.json();
@@ -52,27 +52,27 @@ function App() {
 
       {weather && (
         <div className="card">
-          <h2>📍 {weather.name}, {weather.sys.country}</h2>
+          <h2>📍 {weather.location.name}, {weather.location.country}</h2>
           <img
             className="weather-icon"
-            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-            alt={weather.weather[0].description}
+            src={`https:${weather.current.condition.icon}`}
+            alt={weather.current.condition.text}
           />
-          <p className="temp">{Math.round(weather.main.temp)}°C</p>
-          <p className="desc">{weather.weather[0].description}</p>
+          <p className="temp">{weather.current.temp_c}°C</p>
+          <p className="desc">{weather.current.condition.text}</p>
 
           <div className="details">
             <div className="detail-item">
               <span>💧</span>
-              Humidity<br />{weather.main.humidity}%
+              Humidity<br />{weather.current.humidity}%
             </div>
             <div className="detail-item">
               <span>💨</span>
-              Wind<br />{weather.wind.speed} m/s
+              Wind<br />{weather.current.wind_kph} km/h
             </div>
             <div className="detail-item">
               <span>🌡</span>
-              Feels Like<br />{Math.round(weather.main.feels_like)}°C
+              Feels Like<br />{weather.current.feelslike_c}°C
             </div>
           </div>
         </div>

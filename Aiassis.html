@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast Animated Site</title>
+
+<style>
+:root{
+    --text:#111;
+}
+
+body.dark{
+    --text:#fff;
+}
+
+
+body{
+    margin:0;
+    font-family:system-ui;
+    color:var(--text);
+    scroll-behavior:smooth;
+
+    background: linear-gradient(270deg, #6c63ff, #ff6584, #00c9a7);
+    background-size: 600% 600%;
+    animation: gradientMove 15s ease infinite;
+}
+
+body.dark{
+    background: linear-gradient(270deg, #0f172a, #1e293b, #020617);
+}
+
+
+@keyframes gradientMove {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 25px;
+    backdrop-filter:blur(10px);
+}
+
+nav a{
+    margin:0 10px;
+    text-decoration:none;
+    color:var(--text);
+    font-weight:bold;
+}
+
+button{
+    padding:8px 14px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+
+section{
+    padding:80px 20px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(30px);
+    transition:0.6s ease;
+}
+
+section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+form{
+    max-width:320px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+input{
+    padding:10px;
+    border-radius:6px;
+    border:none;
+}
+
+.error{
+    color:red;
+    font-size:13px;
+}
+
+.success{
+    color:lightgreen;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div><b>My Site</b></div>
+
+<div>
+<a href="#home">Home</a>
+<a href="#contact">Contact</a>
+</div>
+
+<button id="themeBtn">🌙</button>
+</nav>
+
+<section id="home">
+<h1>Welcome 🚀</h1>
+<p>this is customized By AI </p>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+
+<form id="form">
+<input id="name" placeholder="Name">
+<span class="error" id="nameErr"></span>
+
+<input id="email" placeholder="Email">
+<span class="error" id="emailErr"></span>
+
+<button>Submit</button>
+<p class="success" id="msg"></p>
+</form>
+
+</section>
+
+<script>
+
+const btn = document.getElementById("themeBtn");
+
+if(localStorage.getItem("theme")==="dark"){
+    document.body.classList.add("dark");
+}
+
+btn.onclick = () => {
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem("theme",
+        document.body.classList.contains("dark") ? "dark" : "light"
+    );
+};
+
+
+
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+});
+
+sections.forEach(sec => observer.observe(sec));
+
+
+
+const name = document.getElementById("name");
+const email = document.getElementById("email");
+
+const nameErr = document.getElementById("nameErr");
+const emailErr = document.getElementById("emailErr");
+const msg = document.getElementById("msg");
+
+const validate = () => {
+    let valid = true;
+
+    if(name.value.trim().length < 3){
+        nameErr.textContent = "Min 3 chars";
+        valid = false;
+    } else nameErr.textContent = "";
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
+        emailErr.textContent = "Invalid email";
+        valid = false;
+    } else emailErr.textContent = "";
+
+    return valid;
+};
+
+document.getElementById("form").addEventListener("submit",(e)=>{
+    e.preventDefault();
+
+    if(validate()){
+        msg.textContent = "✅ Submitted!";
+        e.target.reset();
+    }
+});
+</script>
+
+</body>
+</html>
