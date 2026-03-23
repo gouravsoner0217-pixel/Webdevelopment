@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0f172a;color:#fff;overflow-x:hidden}
+
+header{display:flex;justify-content:space-between;padding:20px 50px;position:fixed;width:100%;background:rgba(0,0,0,0.3);backdrop-filter:blur(10px)}
+nav a{margin:0 10px;color:white;text-decoration:none}
+
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hero h1{font-size:3rem;animation:fadeIn 2s ease}
+.hero p{margin:20px 0;color:#cbd5e1}
+
+button{padding:10px 20px;border:none;border-radius:8px;background:#22c55e;color:white;cursor:pointer}
+
+section{padding:100px 50px}
+.card{background:#1e293b;padding:20px;border-radius:15px;margin:10px;transition:0.3s}
+.card:hover{transform:translateY(-10px);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<header>
+<h2>MyPortfolio</h2>
+<nav>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1 id="intro">Hi, I'm a Web Developer 🚀</h1>
+<p>I create modern and attractive websites</p>
+<button onclick="speakText()">🔊 Speak</button>
+<button onclick="stopText()">⏹ Stop</button>
+</div>
+
+<section id="about">
+<h2>About Me</h2>
+<p class="speak">I am passionate about building creative web applications.</p>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="grid">
+<div class="card speak">Project 1 - Portfolio Website</div>
+<div class="card speak">Project 2 - Weather App</div>
+<div class="card speak">Project 3 - Learning App</div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p class="speak">Email: example@email.com</p>
+</section>
+
+<script>
+function speakText(){
+ let text=document.getElementById("intro").innerText;
+ let speech=new SpeechSynthesisUtterance(text);
+ speech.rate=1;
+ speech.pitch=1;
+ window.speechSynthesis.speak(speech);
+}
+
+function stopText(){window.speechSynthesis.cancel();}
+
+document.querySelectorAll(".speak").forEach(el=>{
+ el.addEventListener("click",()=>{
+ let speech=new SpeechSynthesisUtterance(el.innerText);
+ window.speechSynthesis.speak(speech);
+ });
+});
+</script>
+
+</body>
+</html>
